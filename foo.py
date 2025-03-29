@@ -23,6 +23,7 @@ def foo_set_option():
     # 设置单列宽度
     pd.set_option('max_colwidth', 200)
 
+
 def formatprint(one, title="ing", ):
     # --------------------------------------------------------------------------------------------------------------------------------
     formatprint("----" * 4 + title + "----" * 4)
@@ -46,8 +47,6 @@ centroid_y = np.mean(bolts[:, 1])
 print(f"螺栓形心坐标为：({centroid_x}, {centroid_y})")
 print(f"螺栓形心坐标为：({centroid_x}, {centroid_y})")
 
-
-
 # 生成随机数组
 random_array = np.random.uniform(0.04654, 0.05362, 5)
 print(random_array)
@@ -56,11 +55,14 @@ print(random_array)
 sorted_array = np.sort(random_array)
 print(np.round(sorted_array, 5))
 
-
-
-
-
 if __name__ == "__main__":
     foo_set_option()
 
-
+    x = np.array([-30.5, 3.6])
+    y = np.array([0, 1])
+    xi = np.interp([-1.5, 1.31], x, y)
+    print("wave", xi)
+    xi = np.interp([1.31, 3.6], x, y)
+    print("wind", xi)
+    xi = np.interp([-2.5, 3.6], x, y)
+    print("stream flow", xi)
