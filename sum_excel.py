@@ -42,11 +42,12 @@ sheet_name_CS = ["YLBPS_CS (" + str(i) + ")" for i in range(1, 5)] + \
                 ["AB (D1)", "AB (E1)"]
 
 # print(sheet_name)
+file_name = './Appendix G King Post Design 1 - 0411 - SPT-N - 4mPD.xlsx'
 sheet = []
 totalloading = []
 strutweight = []
 for i in sheet_name_MS:
-    get = pd.read_excel(io='./Appendix G King Post Design 1 - 0321 - SPT-N - 4mPD.xlsx',
+    get = pd.read_excel(io=file_name,
                         sheet_name=i,
                         usecols='A:I',
                         # index_col=0,
@@ -68,12 +69,11 @@ df_MS = pd.DataFrame({"sheet name": sheet,
 # print(df["total loading"].max())
 
 
-
 sheet = []
 totalloading = []
 strutweight = []
 for i in sheet_name_CS:
-    get = pd.read_excel(io='./Appendix G King Post Design 1 - 0321 - SPT-N - 4mPD.xlsx',
+    get = pd.read_excel(io=file_name,
                         sheet_name=i,
                         usecols='A:I',
                         # index_col=0,
@@ -90,8 +90,6 @@ for i in sheet_name_CS:
 df_CS = pd.DataFrame({"sheet name": sheet,
                       "total loading": totalloading,
                       "strut weight": strutweight})
-
-
 
 xlsx_name = "output.xlsx"
 with pd.ExcelWriter(xlsx_name) as writer:

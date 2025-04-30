@@ -68,3 +68,11 @@ if __name__ == "__main__":
     print("stream flow", xi)
 
     print(1111)
+
+    chars = [chr(i) for i in range(65, 91)]
+
+    sec_lst = ['sec' + i for i in chars]
+    print(sec_lst )
+
+
+
