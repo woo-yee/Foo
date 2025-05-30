@@ -32,8 +32,8 @@ def formatprint(one, title="ing", ):
     formatprint("----" * 30)
 
 
-def main():
-    print('---- kickout checking ----')
+def case0():
+    print('---- 宝丰路 ----')
 
     lst1 = [['B1', 5, '3000x3000', ],
             ['D1', 1, '5250x4050', ],
@@ -65,7 +65,7 @@ def main():
 if __name__ == "__main__":
     foo_set_option()
 
-    df1, df2, df3 = main()
+    df1, df2, df3 = case0()
     print(df1['count'].sum(), '\t', df2['count'].sum(), '\t', df3['count'].sum())
 
     df = pd.concat([df1, df2, df3])
