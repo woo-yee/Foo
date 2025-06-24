@@ -477,6 +477,81 @@ def line_chart():
     plt.show()
 
 
+# 柱状图或条形图
+def bar_chart():
+    x = ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
+    y = [10, 50, 60, 10, 20, 50, 30]
+
+    fig = plt.figure(figsize=(8, 6), facecolor='#f1f1f1')
+    plt.bar(x, y, width=0.5)
+
+    # 在每个柱子上显示数值
+    for a, b in zip(x, y):
+        plt.text(a, b, s='{:.1f}万'.format(b / 10),
+                 ha='center', fontsize=8)
+
+    plt.xlabel('weeks')
+    plt.ylabel('activity')
+    plt.title('Python')
+
+    # 簇状柱状图
+    x = np.array([2019, 2020, 2021, 2022, 2023, 2024, 2025])
+    y1 = np.array([120, 550, 460, 120, 250, 540, 130])
+    y2 = np.array([112, 51, 620, 103, 240, 550, 360])
+    y3 = np.array([103, 450, 650, 106, 207, 580, 630])
+
+    fig = plt.figure(figsize=(8, 6), facecolor='#f1f1f1')
+    w = 0.2
+    plt.bar(x - w, y1, width=w, label='北区')
+    plt.bar(x, y2, width=w, label='中区')
+    plt.bar(x + w, y3, width=w, label='南区')
+
+    plt.legend()
+
+    # 堆叠柱状图
+    x = np.array([2019, 2020, 2021, 2022, 2023, 2024, 2025])
+    y1 = np.array([120, 550, 460, 120, 250, 540, 130])
+    y2 = np.array([112, 51, 620, 103, 240, 550, 360])
+    y3 = np.array([103, 450, 650, 106, 207, 580, 630])
+
+    fig = plt.figure(figsize=(8, 6), facecolor='#f1f1f1')
+    plt.bar(x, y1, label='北区')
+    plt.bar(x, y2, label='中区', bottom=y1)
+    plt.bar(x, y3, label='南区', bottom=y1 + y2)
+
+    plt.legend()
+
+    # 条形图
+    x = np.array([2019, 2020, 2021, 2022, 2023, 2024, 2025])
+    y = np.array([120, 550, 460, 120, 250, 540, 130])
+
+    fig = plt.figure(figsize=(8, 6), facecolor='#f1f1f1')
+    plt.barh(x, y, label='北区')
+
+    plt.legend()
+
+    plt.show()
+
+
+# 直方图
+def histogram_chart():
+    x = np.random.randint(0, 10, 100)
+    # 统计每个数出现的次数
+    vc = pd.Series(x).value_counts()
+    print(vc)
+
+    fig = plt.figure(figsize=(8, 6), facecolor='#f1f1f1')
+    # bins: 组数
+    # plt.hist(x, bins=[0, 3, 6, 9, 10],)
+    # density: 概率分布, 将y坐标改为0~1的数
+    plt.hist(x, bins=10,
+             facecolor='b', alpha=0.4, edgecolor='k',
+             density=True)
+    plt.xticks(range(10))
+
+    plt.show()
+
+
 if __name__ == "__main__":
     foo_set_option()
 
@@ -498,4 +573,6 @@ if __name__ == "__main__":
     # set_text()
     # set_annotate()
     # save_fig()
-    line_chart()
+    # line_chart()
+    # bar_chart()
+    histogram_chart()
