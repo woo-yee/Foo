@@ -425,16 +425,13 @@ def set_annotate():
     plt.plot(x, y, c='r', ls='--', marker='o')
 
     # 画标注或注释
-    ## text: 标注内容
-    ## xytext: 标注内容的位置: 箭头的起始位置
-    ## xy: 标注的坐标点: 箭头指向的位置
-    ## arrowprops: 箭头属性
-    ### width: 箭头线的宽度
-    ### headwidth: 箭头头部的宽度
-    ### facecolor: 箭头的背景颜色
     for a, b in zip(x, y):
-        plt.annotate(text='最高销量', xytext=(a + 0.5, b + 3), xy=(a, b), fontsize=10, color='b',
-                     arrowprops={'width': 0.75, 'headwidth': 5, 'facecolor': 'gray'})
+        plt.annotate(text='最高销量',  # text: 标注内容
+                     xytext=(a + 0.5, b + 3),  # xytext: 标注内容的位置: 箭头的起始位置
+                     xy=(a, b),  # xy: 标注的坐标点: 箭头指向的位置
+                     ontsize=10, color='b',
+                     arrowprops={'width': 0.75, 'headwidth': 5, 'facecolor': 'gray'},  # arrowprops: 箭头属性, width: 箭头线的宽度, headwidth: 箭头头部的宽度, facecolor: 箭头的背景颜色
+                     )
 
     plt.show()
 
@@ -541,13 +538,103 @@ def histogram_chart():
     print(vc)
 
     fig = plt.figure(figsize=(8, 6), facecolor='#f1f1f1')
-    # bins: 组数
+
     # plt.hist(x, bins=[0, 3, 6, 9, 10],)
-    # density: 概率分布, 将y坐标改为0~1的数
-    plt.hist(x, bins=10,
+    plt.hist(x,
+             bins=10,  # bins: 组数
              facecolor='b', alpha=0.4, edgecolor='k',
-             density=True)
+             density=True,  # density: 概率分布, 将y坐标改为0~1的数
+             )
     plt.xticks(range(10))
+
+    plt.show()
+
+
+# 箱型图
+def box_chart():
+    x1 = np.random.randint(0, 10, 100)
+    x2 = np.random.randint(0, 10, 100)
+    x3 = np.random.randint(0, 10, 100)
+
+    fig = plt.figure(figsize=(8, 6), facecolor='#f1f1f1')
+    # 最大值
+    # 3/4值 Q3
+    # 2/4值 中位数
+    # 1/4值 Q1
+    # 最小值
+    plt.boxplot([x1, x2, x3])
+
+    data = np.random.normal(size=(500, 4))
+
+    fig = plt.figure(figsize=(8, 6), facecolor='#f1f1f1')
+    # 最大值
+    # 3/4值 Q3
+    # 2/4值 中位数
+    # 1/4值 Q1
+    # 最小值
+    plt.boxplot(data,
+                tick_labels=['A', 'B', 'C', 'D'],
+                notch=True,  # 箱型图样式
+                sym='g*'  # 颜色和marker
+                )
+
+    plt.show()
+
+
+# 散点图
+def scatter_chart_1():
+    x = np.random.randint(0, 10, 100)
+    y = np.random.randint(0, 10, 100)
+
+    fig = plt.figure(figsize=(8, 6), facecolor='#f1f1f1')
+    plt.scatter(x, y)
+
+    plt.show()
+
+
+# 气泡图
+def scatter_chart_2():
+    data = np.random.randn(100, 2)
+
+    fig = plt.figure(figsize=(8, 6), facecolor='#f1f1f1')
+    s = np.random.randint(50, 200, size=100)
+    c = np.random.randn(100)
+    plt.scatter(data[:, 0], data[:, 1],
+                s=s,
+                c=c,
+                alpha=0.6
+                )
+
+    plt.show()
+
+
+# 六边形图
+def hexbin_chart():
+    data = np.random.randn(100, 2)
+
+    fig = plt.figure(figsize=(8, 6), facecolor='#f1f1f1')
+    plt.hexbin(data[:, 0], data[:, 1],
+               gridsize=20,  # 六边形大小
+               cmap='rainbow'  # 六边形颜色
+               )
+
+    plt.show()
+
+
+# 饼图
+def pie_chart():
+    x = np.array([10, 20, 30, 40])
+
+    fig = plt.figure(figsize=(8, 6), facecolor='#f1f1f1')
+    plt.pie(x,
+            autopct='%.1f%%',  # 显示百分比
+            pctdistance=0.7,  # 百分比到圆心的距离
+            labels=['A', 'B', 'C', 'D'],  # 标签
+            labeldistance=1.05,  # 标签的位置
+            shadow=False,  # 阴影
+            textprops={'fontsize': 12, 'color': 'blue'},  # 文字样式
+            explode=[0, 0.1, 0, 0],  # 分裂效果
+            )
 
     plt.show()
 
@@ -575,4 +662,9 @@ if __name__ == "__main__":
     # save_fig()
     # line_chart()
     # bar_chart()
-    histogram_chart()
+    # histogram_chart()
+    # box_chart()
+    # scatter_chart_1()
+    # scatter_chart_2()
+    # hexbin_chart()
+    pie_chart()
