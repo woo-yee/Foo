@@ -621,8 +621,8 @@ def hexbin_chart():
     plt.show()
 
 
-# 饼图
-def pie_chart():
+# 饼图1
+def pie_chart_1():
     x = np.array([10, 20, 30, 40])
 
     fig = plt.figure(figsize=(8, 6), facecolor='#f1f1f1')
@@ -635,6 +635,76 @@ def pie_chart():
             textprops={'fontsize': 12, 'color': 'blue'},  # 文字样式
             explode=[0, 0.1, 0, 0],  # 分裂效果
             )
+
+    plt.show()
+
+
+# 饼图2
+def pie_chart_2():
+    x1 = np.array([10, 20, 30, 40])
+    x2 = np.array([1, 2, 3, 4])
+
+    # 第1个圆环
+    fig = plt.figure(figsize=(8, 6), facecolor='#f1f1f1')
+    plt.pie(x1,
+            autopct='%.1f%%',  # 显示百分比
+            pctdistance=0.8,  # 百分比到圆心的距离
+            labels=['A', 'B', 'C', 'D'],  # 标签
+            textprops={'fontsize': 12, 'color': 'blue'},  # 文字样式
+            wedgeprops={'width': 0.4, 'edgecolor': 'w'},  # 甜甜圈设置
+            )
+
+    # 第2个圆环
+    plt.pie(x2,
+            autopct='%.1f%%',  # 显示百分比
+            pctdistance=0.8,  # 百分比到圆心的距离
+            textprops={'fontsize': 8},  # 文字样式
+            radius=0.6,  # 半径
+            )
+
+    plt.legend(['A', 'B', 'C', 'D'], fontsize=10)
+    plt.show()
+
+
+# 面积图
+def stack_chart():
+    x = np.array([1, 2, 3, 4, 5])
+    y = np.random.randint(10, 100, 5)
+
+    fig = plt.figure(figsize=(8, 6), facecolor='#f1f1f1')
+    plt.stackplot(x, y
+                  )
+
+    plt.show()
+
+
+# 热力图
+def imshow_chart():
+    x = np.array([1, 2, 3, 4, 5])
+    y = np.array([np.random.randint(1, 100, 10)])
+    print(y)
+
+    fig = plt.figure(figsize=(8, 6), facecolor='#f1f1f1')
+    plt.imshow(y,
+               cmap='rainbow'
+               )
+    plt.colorbar()
+
+    plt.show()
+
+
+# 极坐标图
+def polar_chart():
+    N = 8
+    x = np.linspace(0, 2 * pi, N, endpoint=False)
+    height = np.random.randint(3, 15, size=N)
+    width = 2 * pi / N
+    color = np.random.rand(8, 3)
+
+    # 画图
+    ax = plt.subplot(111, projection='polar')
+    ax.bar(x=x, height=height, width=width,
+           bottom=0, color=color)
 
     plt.show()
 
@@ -667,4 +737,8 @@ if __name__ == "__main__":
     # scatter_chart_1()
     # scatter_chart_2()
     # hexbin_chart()
-    pie_chart()
+    # pie_chart_1()
+    # pie_chart_2()
+    # stack_chart()
+    # imshow_chart()
+    polar_chart()
